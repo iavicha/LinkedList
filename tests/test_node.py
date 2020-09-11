@@ -34,7 +34,7 @@ class TestNode(unittest.TestCase):
     def test_repr(self):
         node = Node(1, Node(2), Node(3))
 
-        self.assertEqual(repr(node), "Node(1,2,3)")
+        self.assertEqual(repr(node), "Node(1, 2, 3)")
 
 
 if __name__ == '__main__':
