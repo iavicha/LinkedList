@@ -37,4 +37,4 @@ class Node:
 
 
     def __repr__(self):
-        return f"{self.__class__.__name__}({self.value}, {self.__next}, {self.__prev})"
+        return f"{self.__class__.__name__}({self.value}, {self.__next.value}, {self.__prev.value})"

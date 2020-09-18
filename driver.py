@@ -34,7 +34,7 @@ class CvtFileDrive(IStructureDriver):
     def write(self, d):
         with open(self.filename, 'w', encoding='utf-8') as ftw:
             df = pandas.Series(d)
-            df.to_csv(ftw, index=False)
+            df.to_csv(ftw, header=False)
 
 
 class MyList:
@@ -53,7 +53,9 @@ class MyList:
         return str(self.__list)
 
     def write(self):
+
         self.driver.write(self.__list)
+
 
     def read(self):
         self.__list = self.driver.read()
@@ -65,6 +67,9 @@ if __name__ == '__main__':
     l.write()
 
     print(l)
+
+    l1 = MyList(driver=cvt_driver)
+    print(l1)
 
     # l1 = MyList(driver=cvt_driver)
     # print(l1)

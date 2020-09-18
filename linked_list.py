@@ -42,13 +42,10 @@ class LinkedList:
         raise StopIteration
 
     def write(self):
-        self.__driver.write
+        self.driver.write(self.__list)
 
 
     def clear(self):
-        '''
-        Clear LinkedList
-        '''
         ...
 
     def find(self, value):
