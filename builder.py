@@ -1,4 +1,4 @@
-from driver import JsonFileDriver
+from driver import JsonFileDriver, CvtFileDrive
 
 
 class DriverBuilder:
@@ -19,13 +19,27 @@ class JsonFileBuilder(DriverBuilder):
         return JsonFileDriver(filename)
 
 
+class CvtFileBuilder(DriverBuilder):
+    def build(self):
+        while True:
+            filename = input('Введите название cvt файла: (.cvt)')
+            filename = filename.strip()
+            if not filename.endswith('.cvt'):
+                print('Файл должен оканчивается на .cvt')
+                continue
+            break
+
+        return CvtFileDrive(filename)
+
+
 class FabricDriverBuilder:
     @staticmethod
     def get_driver():
         driver_name = input("Введите название драйвера: ")
 
         drivers = {
-            'json_file': JsonFileBuilder
+            'json_file': JsonFileBuilder,
+            'cvt_file': CvtFileBuilder
         }
 
         return drivers[driver_name]().build()

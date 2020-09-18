@@ -1,4 +1,5 @@
 import json
+import pandas
 
 
 class IStructureDriver:
@@ -20,6 +21,20 @@ class JsonFileDriver(IStructureDriver):
     def write(self, d) -> None:
         with open(self.filename, 'w', encoding='utf-8') as f:
             json.dump(d, f)
+
+
+class CvtFileDrive(IStructureDriver):
+    def __init__(self, filename):
+        self.filename = filename
+
+    def read(self) -> list:
+        with open(self.filename, "r", encoding='utf-8') as fto:
+            return pandas.read_csv(fto)
+
+    def write(self, d):
+        with open(self.filename, 'w', encoding='utf-8') as ftw:
+            df = pandas.Series(d)
+            df.to_csv(ftw, index=False)
 
 
 class MyList:
@@ -45,13 +60,14 @@ class MyList:
 
 
 if __name__ == '__main__':
-    json_driver = JsonFileDriver('test')
-    l = MyList([1, 2, 3], driver=json_driver)
+    cvt_driver = CvtFileDrive('123')
+    l = MyList([1, 2, 3], driver=cvt_driver)
+    l.write()
 
     print(l)
 
-    l1 = MyList(driver=json_driver)
-    print(l1)
+    # l1 = MyList(driver=cvt_driver)
+    # print(l1)
 
-    l2 = MyList()
-    print(l2)
+    # l2 = MyList()
+    # print(l2)
