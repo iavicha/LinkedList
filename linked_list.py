@@ -41,12 +41,16 @@ class LinkedList:
             current_node = current_node.next
         raise StopIteration
 
-    def write(self):
-        self.driver.write(self.__list)
-
 
     def clear(self):
-        ...
+        if len(self):
+            next.node = self.__head.next
+            while self.__node is not None:
+                next.node.prev =
+
+
+
+
 
     def find(self, value):
 
